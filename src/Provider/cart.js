@@ -9,10 +9,27 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart(state, action) {
-      state.products.push(action.payload);
+      const isProductAlreadyAdded = state.products.findIndex(
+        (product) => action.payload.id === product.id
+      );
+      if (isProductAlreadyAdded !== -1) {
+        state.products[isProductAlreadyAdded].quantity++;
+      } else {
+        state.products.push({ ...action.payload, quantity: 1 });
+      }
     },
     removeFromCart(state, action) {
-      state.products.splice(action.payload);
+      const isProductAlreadyAdded = state.products.findIndex(
+        (product) => action.payload.id === product.id
+      );
+      if (
+        isProductAlreadyAdded !== -1 &&
+        state.products[isProductAlreadyAdded].quantity > 1
+      ) {
+        state.products[isProductAlreadyAdded].quantity--;
+      } else {
+        state.products.splice(action.payload);
+      }
     },
   },
 });

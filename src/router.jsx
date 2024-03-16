@@ -3,6 +3,7 @@ import Dashboard from "./Pages/Dashboard";
 import Cart from "./Pages/Cart";
 import Contact from "./Pages/Contact";
 import Profile from "./Pages/Profile";
+import Checkout from "./Pages/Checkout";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
   {
     path: "/profile",
     element: <Profile />,
+  },
+  {
+    path: "/checkout",
+    element: <Checkout />,
   },
 ]);
 

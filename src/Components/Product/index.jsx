@@ -1,20 +1,38 @@
-import { Button, Card, Flex } from "antd";
+import { Button, Card, Flex, Space } from "antd";
 import { toast } from "react-toastify";
 
 import { useState } from "react";
 import QrPopup from "../Modals/QrUrlPopup";
-import { addToCart } from "../../Provider/cart";
-import { useDispatch } from "react-redux";
+import { addToCart, removeFromCart } from "../../Provider/cart";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Product = (props) => {
-  const { name, img, eco } = props;
+  const { name, img, eco, id } = props;
   const dispatch = useDispatch();
   const [showQrPopup, setShowQrPopup] = useState(false);
+  const { products } = useSelector((state) => state.cart);
+  const [isDirectBuy, setIsDirectBuy] = useState(false);
+  const navigate = useNavigate();
+  const addedToCardProduct = products.find((product) => product.id === id);
+
   const onOk = () => {
-    console.log("added to cart");
+    if (isDirectBuy) {
+      navigate("/checkout");
+      return;
+    }
     dispatch(addToCart(props));
-    toast("added to cart");
+    // toast.success("added to cart");
     setShowQrPopup(false); //
+  };
+
+  const handleBuyNow = () => {
+    if (addedToCardProduct) {
+      navigate("/checkout");
+    } else {
+      setShowQrPopup(true);
+      setIsDirectBuy(true);
+    }
   };
   return (
     <>
@@ -29,8 +47,18 @@ const Product = (props) => {
             <p>{eco.sp}</p>
           </div>
           <Flex vertical justify="space-around">
-            <Button onClick={() => setShowQrPopup(true)}>Add to cart</Button>
-            <Button onClick={() => setShowQrPopup(true)}>Buy now</Button>
+            {addedToCardProduct ? (
+              <Space>
+                <Button onClick={onOk}>+</Button>
+                <Button>{addedToCardProduct.quantity}</Button>
+                <Button onClick={() => dispatch(removeFromCart(props))}>
+                  -
+                </Button>
+              </Space>
+            ) : (
+              <Button onClick={() => setShowQrPopup(true)}>Add to cart</Button>
+            )}
+            <Button onClick={handleBuyNow}>Buy now</Button>
           </Flex>
         </Flex>
       </Card>
