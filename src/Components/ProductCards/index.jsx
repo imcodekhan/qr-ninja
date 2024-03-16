@@ -18,7 +18,8 @@ const Product = (props) => {
 
   const onOk = () => {
     if (isDirectBuy) {
-      navigate("/checkout");
+      // navigate("/checkout");
+      window.open("https://buy.stripe.com/test_00gdUJ8gR6NsdsQ288");
       return;
     }
     dispatch(addToCart(props));

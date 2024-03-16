@@ -4,6 +4,7 @@ import Cart from "./Pages/Cart";
 import Contact from "./Pages/Contact";
 import Profile from "./Pages/Profile";
 import Checkout from "./Pages/Checkout";
+import Orders from "./Pages/Orders";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
   {
     path: "/checkout",
     element: <Checkout />,
+  },
+  {
+    path: "/orders",
+    element: <Orders />,
   },
 ]);
 

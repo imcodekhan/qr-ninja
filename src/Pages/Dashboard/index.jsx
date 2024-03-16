@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "../../Components/Layout";
 import Category from "../../Components/Category";
 import Header from "./Component/Header";
-import Product from "../../Components/Product";
+import Product from "../../Components/ProductCards";
 import { Flex } from "antd";
 
 const Dashboard = () => {
@@ -32,7 +32,6 @@ const Dashboard = () => {
   ];
   return (
     <Layout>
-      dashboard
       <Header />
       <Category />
       <Flex gap={20} wrap="wrap">

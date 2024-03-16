@@ -1,7 +1,7 @@
 import { Button, Flex, Space } from "antd";
 import Layout from "../../Components/Layout";
 import { useSelector } from "react-redux";
-import Product from "../../Components/Product";
+import Product from "../../Components/ProductCards";
 import { useNavigate } from "react-router-dom";
 
 const Cart = () => {

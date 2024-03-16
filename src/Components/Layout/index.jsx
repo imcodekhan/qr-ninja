@@ -12,8 +12,8 @@ const items = [
     label: "Cart",
   },
   {
-    key: "/profile",
-    label: "Profile",
+    key: "/orders",
+    label: "Orders",
   },
 ];
 
