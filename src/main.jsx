@@ -1,13 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
-import "./index.css";
-import { MantineProvider } from "@mantine/core";
+import { RouterProvider } from "react-router-dom";
+import router from "./router.jsx";
+import { ToastContainer } from "react-toastify";
+import { Provider } from "react-redux";
+import store from "./Provider/index.js";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <MantineProvider>
-      <App />
-    </MantineProvider>
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
+    <ToastContainer />
   </React.StrictMode>
 );
