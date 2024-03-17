@@ -10,7 +10,7 @@ const cartSlice = createSlice({
   reducers: {
     addToCart(state, action) {
       const isProductAlreadyAdded = state.products.findIndex(
-        (product) => action.payload.id === product.id
+        (product) => action.payload._id === product._id
       );
       if (isProductAlreadyAdded !== -1) {
         state.products[isProductAlreadyAdded].quantity++;
@@ -20,7 +20,7 @@ const cartSlice = createSlice({
     },
     removeFromCart(state, action) {
       const isProductAlreadyAdded = state.products.findIndex(
-        (product) => action.payload.id === product.id
+        (product) => action.payload._id === product._id
       );
       if (
         isProductAlreadyAdded !== -1 &&

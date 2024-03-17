@@ -16,7 +16,7 @@ const Cart = () => {
           </div>
           <Flex gap={20}>
             {products.map((product) => (
-              <Product {...product} />
+              <Product key={product._id} {...product} />
             ))}
           </Flex>
         </>

@@ -37,7 +37,7 @@ const QrUrlPopup = ({ onCancel, onOk, img }) => {
         </div>
       </Space>
       <Flex justify="center" style={{ padding: 20 }}>
-        <img src={img[0]} height={400} width={300} />
+        <img src={img?.[0]} height={400} width={300} />
       </Flex>
     </Modal>
   );

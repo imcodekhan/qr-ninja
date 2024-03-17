@@ -3,18 +3,18 @@ import { toast } from "react-toastify";
 
 import { useState } from "react";
 import QrPopup from "../Modals/QrUrlPopup";
-import { addToCart, removeFromCart } from "../../Provider/cart";
+import { addToCart, removeFromCart } from "../../Redux/Features/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const Product = (props) => {
-  const { name, img, eco, id } = props;
+  const { name, img, eco, _id } = props;
   const dispatch = useDispatch();
   const [showQrPopup, setShowQrPopup] = useState(false);
   const { products } = useSelector((state) => state.cart);
   const [isDirectBuy, setIsDirectBuy] = useState(false);
   const navigate = useNavigate();
-  const addedToCardProduct = products.find((product) => product.id === id);
+  const addedToCardProduct = products.find((product) => product._id === _id);
 
   const onOk = () => {
     if (isDirectBuy) {
@@ -41,11 +41,11 @@ const Product = (props) => {
         <QrPopup onCancel={() => setShowQrPopup(false)} onOk={onOk} img={img} />
       )}
       <Card title={name} style={{ width: 300 }}>
-        <img width={250} src={img[0]} alt="tshirt" />
+        <img width={250} src={img?.[0]} alt="tshirt" />
         <Flex justify="space-between">
           <div>
-            <p style={{ textDecoration: "line-through" }}>{eco.mrp}</p>
-            <p>{eco.sp}</p>
+            <p style={{ textDecoration: "line-through" }}>{eco?.mrp}</p>
+            <p>{eco?.sp}</p>
           </div>
           <Flex vertical justify="space-around">
             {addedToCardProduct ? (
