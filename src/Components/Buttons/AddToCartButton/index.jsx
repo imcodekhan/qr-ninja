@@ -6,15 +6,14 @@ import { addToCart } from "../../../Redux/Features/cartSlice";
 import { useDispatch } from "react-redux";
 
 const AddToCartButton = (props) => {
-  const { img } = props;
+  const { img, _id } = props;
   const [url, setUrl] = useState("");
   const [label, setLabel] = useState("");
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
 
   function handleContinue() {
-    console.log("handleContinue");
-    dispatch(addToCart(props));
+    dispatch(addToCart({ _id }));
     const cartButton = document.getElementById("cart-button");
     cartButton.click();
     setOpen(false);

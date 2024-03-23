@@ -20,32 +20,39 @@ const CartButton = () => {
           body: {
             padding: 0,
             height: "100%",
+            display: "flex",
+            justifyContent: "space-between",
+            flexDirection: "column",
           },
           wrapper: {
             maxWidth: 450,
             width: "100%",
           },
-          header: {
-            backgroundColor: "yellow",
-          },
         }}
       >
         {products.length ? (
           <>
-            <div style={{ display: "flex", justifyContent: "end", margin: 20 }}>
-              <Button
-                onClick={() => {
-                  navigate("/checkout");
-                }}
-              >
-                Checkout
-              </Button>
-            </div>
             <Flex gap={20}>
               {products.map((product) => (
                 <ProductCard key={product._id} {...product} />
               ))}
             </Flex>
+            <Button
+              onClick={() => {
+                navigate("/checkout");
+              }}
+              style={{
+                borderRadius: 0,
+                width: "100%",
+                backgroundColor: "yellow",
+                height: 80,
+                marginTop: "auto",
+                fontSize: 28,
+                fontWeight: "lighter",
+              }}
+            >
+              Checkout
+            </Button>
           </>
         ) : (
           <Flex
