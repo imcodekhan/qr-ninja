@@ -4,7 +4,23 @@ import { useSelector } from "react-redux";
 import Layout from "../../Components/Layout";
 import Category from "../../Components/Category";
 import Header from "./Component/Header";
-import Product from "../../Components/ProductCards";
+import ProductCard from '../../Components/Cards/ProductCard'
+
+const product = {
+  name: "some tshirt",
+  category: "oversized",
+  size: ["m", "s", "l"],
+  stock: 100,
+  colors: ["red", "green"],
+  priceDetails: {
+    mrp: 999,
+    sp: 799,
+  },
+  images: {
+    red: ["image1, image2"],
+    green: ["image1, image2"],
+  },
+};
 
 const Dashboard = () => {
   const { products } = useSelector((state) => state.products);
@@ -13,9 +29,9 @@ const Dashboard = () => {
     <Layout>
       <Header />
       <Category />
-      <Flex gap={20} wrap="wrap">
+      <Flex id="top-picks" gap={20} wrap="wrap">
         {products?.map((product) => (
-          <Product key={product._id} {...product} />
+          <ProductCard key={product._id} {...product} />
         ))}
       </Flex>
     </Layout>

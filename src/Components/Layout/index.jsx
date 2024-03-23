@@ -1,21 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import { Layout as AntdLayout, Menu, theme } from "antd";
+import { Layout as AntdLayout, Flex, theme } from "antd";
+import Profile from "../../Pages/ControlPanel";
+import { UserOutlined } from "@ant-design/icons";
+import CartButton from "../Buttons/CartButton";
 const { Header, Content, Footer } = AntdLayout;
-
-const items = [
-  {
-    key: "/contact",
-    label: "Contact",
-  },
-  {
-    key: "/cart",
-    label: "Cart",
-  },
-  {
-    key: "/orders",
-    label: "Orders",
-  },
-];
 
 const Layout = ({ children }) => {
   const {
@@ -28,32 +16,25 @@ const Layout = ({ children }) => {
       <Header
         style={{
           display: "flex",
+          backgroundColor: "yellow",
           alignItems: "center",
+          justifyContent: "space-between",
         }}
       >
         <div
-          style={{ color: "white" }}
+          style={{ cursor: "pointer" }}
           className="logo"
           onClick={() => navigate("/")}
         >
           QR Ninja
         </div>
-        <Menu
-          theme="dark"
-          mode="horizontal"
-          items={items}
-          onClick={(value) => navigate(value.key)}
-          style={{
-            flex: 1,
-            minWidth: 0,
-          }}
-        />
+        {/* <Profile /> */}
+        <Flex justify="space-evenly" style={{ width: "10%" }}>
+          <UserOutlined onClick={() => navigate("/control-panel/account")} />
+          <CartButton />
+        </Flex>
       </Header>
-      <Content
-        style={{
-          padding: "0 48px",
-        }}
-      >
+      <Content>
         {/* <Breadcrumb
         style={{
           margin: "16px 0",
@@ -72,6 +53,22 @@ const Layout = ({ children }) => {
         // }}
         >
           {children}
+          {/* <Drawer
+            closeIcon={<ArrowLeftOutlined />}
+            onClose={onClose}
+            open={open}
+            styles={{
+              body: {
+                padding: 0,
+                height: "100%",
+              },
+              wrapper: {
+                maxWidth: 450,
+                width: "100%",
+              },
+            }}
+          > */}
+          {/* </Drawer> */}
         </div>
       </Content>
       <Footer

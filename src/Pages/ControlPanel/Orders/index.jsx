@@ -1,7 +1,6 @@
 import { Button, Flex, Space } from "antd";
-import Layout from "../../Components/Layout";
 import { useNavigate } from "react-router-dom";
-import OrderCard from "../../Components/ProductCards/OrderCard";
+import OrderCard from "../../../Components/Cards/OrderCard";
 
 // const DUMMY_ORDER = [
 //   {
@@ -55,7 +54,7 @@ const Orders = () => {
   const orders = [];
   const navigate = useNavigate();
   return (
-    <Layout>
+    <>
       {orders?.length ? (
         <Flex gap={20}>
           {orders.map((product) => (
@@ -75,7 +74,7 @@ const Orders = () => {
           <Button onClick={() => navigate("/")}>Continue shopping</Button>
         </Space>
       )}
-    </Layout>
+    </>
   );
 };
 
